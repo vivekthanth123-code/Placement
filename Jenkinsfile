@@ -13,7 +13,7 @@ pipeline {
 
         stage('First') {
             steps {
-                sh 'docker ps'
+                sh 'git clone -f https://github.com/vivekthanth123-code/Placement.git'
             }
         }
 
