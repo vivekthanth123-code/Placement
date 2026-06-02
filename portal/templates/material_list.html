@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/material_list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= CLEAN HEADER ================= -->
+<header class="page-header container">
+    <h1 class="page-title">{{ category.name }} Study Materials</h1>
+    <p class="page-subtitle">
+        High-quality resources for <strong>placement preparation</strong>. View or download materials easily.
+    </p>
+
+    <div class="header-actions">
+      
+        <a href="{% url 'material_categories' %}" class="back-btn">← Back to Categories</a>
+    </div>
+</header>
+
+
+<!-- ================= MATERIAL GRID ================= -->
+<section class="materials-section container">
+
+    {% if materials %}
+    <div class="materials-grid" id="materialsGrid">
+
+        {% for material in materials %}
+        <div class="material-card" data-title="{{ material.title|lower }}">
+
+            <div class="card-header">
+                <h3>{{ material.title }}</h3>
+                <div class="file-icon"></div>
+            </div>
+
+            <p class="upload-date">
+                <i class="fas fa-calendar"></i> Uploaded: {{ material.uploaded_at|date:"d M Y" }}
+            </p>
+
+            <div class="card-actions">
+                <a href="{{ material.pdf.url }}" target="_blank" class="view-btn">
+                    👁 View
+                </a>
+
+                <a href="{% url 'download_material' material.id %}" class="download-btn">
+                    ⬇ Download
+                </a>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+        <div class="no-materials">No materials available.</div>
+    {% endif %}
+
+</section>
+
+
+
+
+<!-- ================= JS: SEARCH ONLY ================= -->
+<script>
+const searchInput = document.getElementById('searchInput');
+const cards = document.querySelectorAll('.material-card');
+
+if (searchInput) {
+    searchInput.addEventListener('keyup', function() {
+        const value = this.value.toLowerCase();
+
+        cards.forEach(card => {
+            const title = card.dataset.title;
+            card.style.display = title.includes(value) ? 'flex' : 'none';
+        });
+    });
+}
+
+// ✨ CARD ENTRANCE ANIMATION
+window.addEventListener('load', () => {
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(25px)';
+
+        setTimeout(() => {
+            card.style.transition = 'all 0.45s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+});
+</script>
+
+{% endblock %}

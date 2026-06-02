@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/result.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="result-page">
+
+    <div class="result-container">
+
+        <!-- TOP BAR -->
+        <div class="result-top">
+
+            <a href="{% url 'dashboard' %}" class="btn-back">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+        <!-- TITLE -->
+        <h2 class="result-title"> Quiz Result</h2>
+
+        {% if attempt %}
+
+        <!-- SCORE SECTION -->
+        <div class="result-box">
+
+            <div class="result-row">
+                <span class="label">Score</span>
+                <span class="value">
+                    {{ attempt.score }} / {{ attempt.total_questions }}
+                </span>
+            </div>
+
+            <div class="result-row {% if passed %}pass{% else %}fail{% endif %}">
+                <span class="label">Status</span>
+                <span class="value">
+                    {% if passed %} Pass{% else %} Fail{% endif %}
+                </span>
+            </div>
+
+        </div>
+
+        <!-- ANSWER REVIEW -->
+        <div class="review-section">
+
+            <h3 class="review-title"> Answer Review</h3>
+
+            {% for answer in answers %}
+
+            <div class="review-card {% if answer.is_correct %}correct{% else %}wrong{% endif %}">
+
+                <p class="review-question">
+                    {{ forloop.counter }}. {{ answer.question.question_text }}
+                </p>
+
+                <div class="options-list">
+                    {% for option in answer.question.options.all %}
+                    <div class="option-item {% if option == answer.selected_option %}selected{% endif %} {% if option.is_correct %}correct{% endif %}">
+                        {{ option.option_text }}
+                        {% if option == answer.selected_option %} (Your Choice){% endif %}
+                        {% if option.is_correct %}  Correct{% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+            <p>No quiz attempted yet.</p>
+        </div>
+
+        {% endif %}
+
+        <!-- FOOTER BUTTON -->
+        <div class="result-footer">
+            <a href="{% url 'quiz_home' %}" class="btn-dashboard">
+                Attempt Another category  Quiz
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

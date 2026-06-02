@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="admin-container">
+
+    <h2 class="admin-title">Student Management</h2>
+
+    <div class="table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Branch</th>
+                    <th>Technology</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.user.id }}</td>
+                    <td>{{ student.user.username }}</td>
+                    <td>{{ student.user.email }}</td>
+                    <td>{{ student.phone }}</td>
+                    <td>{{ student.branch }}</td>
+                    <td>{{ student.technology }}</td>
+
+               <td class="actions">
+    <a href="{% url 'student_update' student.id %}" class="btn-edit">
+        Edit
+    </a>
+
+    <a href="{% url 'student_delete' student.id %}"
+       class="btn-delete"
+       onclick="return confirm('Delete this student?')">
+        Delete
+    </a>
+</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">No students found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

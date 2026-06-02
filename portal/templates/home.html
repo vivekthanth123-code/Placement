@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-content"  >
+        <h1>Prepare. Practice. Get Placed.</h1>
+
+        <p>
+            Master aptitude, build professional resumes, and stay updated
+            with the latest placement opportunities — all in one powerful platform.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{% url 'register' %}" class="nav-btn">Get Started</a>
+            <a href="{% url 'login' %}" class="nav-btn-outline">Login</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>500+</h2>
+        <p>Aptitude Questions</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>100+</h2>
+        <p>Companies Covered</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>24/7</h2>
+        <p>Practice Access</p>
+    </div>
+
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="placement-info">
+
+    <div class="placement-container">
+
+        <h2 class="placement-title">About Our Placement Portal</h2>
+
+        <p class="placement-text">
+            Placement Portal helps students prepare for the corporate world.
+            Practice aptitude questions, build resumes, and stay updated with
+            company drives.
+        </p>
+
+        <p class="placement-text">
+            Our platform provides mock tests, interview tips, and career
+            guidance to improve your chances of getting placed in top companies.
+        </p>
+
+        <a href="{% url 'dashboard' %}" class="placement-btn">
+            Go to Dashboard →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

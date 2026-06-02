@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/quiz.css' %}?v=5">
+{% endblock %}
+
+{% block content %}
+
+<div class="quiz-page">
+  <div class="quiz-container">
+
+
+    <!-- ══ HEADER ══════════════════════════════════════════ -->
+    <header class="quiz-header">
+
+      <div class="quiz-header__meta">
+        <span class="quiz-header__badge"> Quiz Mode</span>
+      </div>
+
+      <h1 class="quiz-header__title">{{ category|title }} Quiz</h1>
+
+      <p class="quiz-header__subtitle">
+        Read each question carefully and choose the best answer
+      </p>
+
+      <div class="quiz-header__stats">
+
+        <div class="stat-pill">
+          <span class="stat-pill__icon"></span>
+          <span class="stat-pill__value">{{ questions|length }}</span>
+          <span class="stat-pill__label">Questions</span>
+        </div>
+
+        <div class="stat-pill">
+          <span class="stat-pill__icon">⏱</span>
+          <span class="stat-pill__value">~{{ questions|length }}</span>
+          <span class="stat-pill__label">Minutes</span>
+        </div>
+
+      </div>
+
+    </header>
+    <!-- ══ /HEADER ═════════════════════════════════════════ -->
+
+
+    <!-- ══ QUIZ FORM ═══════════════════════════════════════ -->
+    <form method="POST" class="quiz-form" id="quizForm">
+      {% csrf_token %}
+
+      <div class="questions-wrapper">
+
+        {% for question in questions %}
+
+        <!-- delay-N class drives the CSS stagger animation -->
+        <div class="question-card delay-{{ forloop.counter }}">
+
+          <!-- Top row: Q-number pill + category badge -->
+          <div class="question-card__top">
+            <span class="question-number">Q{{ forloop.counter }}</span>
+            <span class="question-badge">{{ category|title }}</span>
+          </div>
+
+          <!-- Question text (border-bottom divider comes from CSS) -->
+          <p class="question-text">{{ question.question_text }}</p>
+
+          <!-- OPTIONS -->
+          <div class="options" role="radiogroup" aria-label="Options for question {{ forloop.counter }}">
+
+            {% for option in question.options.all %}
+
+            <label class="option" for="opt_{{ question.id }}_{{ forloop.counter }}">
+
+              <input
+                type="radio"
+                id="opt_{{ question.id }}_{{ forloop.counter }}"
+                name="{{ question.id }}"
+                value="{{ option.id }}"
+                required
+              >
+
+              <span class="option__indicator"></span>
+              <span class="option__text">{{ option.option_text }}</span>
+
+            </label>
+
+            {% endfor %}
+
+          </div>
+          <!-- /OPTIONS -->
+
+        </div>
+        <!-- /question-card -->
+
+        {% endfor %}
+
+      </div>
+      <!-- /questions-wrapper -->
+
+
+      <!-- ══ FOOTER ══════════════════════════════════════════ -->
+      <footer class="quiz-footer">
+
+        <div class="quiz-footer__tip">
+          Tip: All questions are required. Review before submitting.
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="submit-btn__text">Submit Quiz</span>
+          <span class="submit-btn__arrow">→</span>
+        </button>
+
+      </footer>
+      <!-- ══ /FOOTER ════════════════════════════════════════ -->
+
+    </form>
+    <!-- ══ /QUIZ FORM ══════════════════════════════════════ -->
+
+
+  </div>
+</div>
+
+{% endblock %}

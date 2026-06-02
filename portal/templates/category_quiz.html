@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/category_quiz.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="quiz-container">
+
+   
+
+    <h2 class="quiz-title">
+          <a href="{% url 'dashboard' %}" class="btn-back">
+                ← Back to Dashboard
+            </a>
+
+    <span class="quiz-icon"></span>
+    {{ category.name|title }} Quiz
+</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="quiz-grid">
+            {% for question in questions %}
+            <div class="question-card">
+                <p class="question-text">{{ forloop.counter }}. {{ question.question_text }}</p>
+
+                <div class="choices">
+                    {% for option in question.options.all %}
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="{{ option.id }}">
+                        <span>{{ option.option_text }}</span>
+                    </label>
+                    {% empty %}
+                    <p style="color:red;">No options added.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% empty %}
+            <p>No questions in this category yet.</p>
+            {% endfor %}
+        </div>
+
+        <div class="quiz-footer">
+            <button type="submit" class="btn-submit">Submit Quiz</button>
+        </div>
+
+
+         <a href="#" class="btn-back-up">
+                <i class="fa-solid fa-arrow-up"></i> 
+            </a>
+
+    </form>
+
+</div>
+
+ 
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-wrapper">
+        <div class="header-actions">
+      
+        <a href="{% url 'dashboard' %}" class="back-btn">← Back to Categories</a>
+    </div>
+
+
+    <div class="profile-resume-box">
+
+        <!-- ===== Title ===== -->
+        <h3 class="profile-title"> My Resume</h3>
+
+        {% if resume and resume.resume_file %}
+
+            <!-- ===== Resume Uploaded ===== -->
+            <p class="success-text">Resume Uploaded Successfully</p>
+
+            <div class="btn-group">
+
+                <a href="{{ resume.resume_file.url }}" 
+                   target="_blank" 
+                   class="btn">
+                   👁 View Resume
+                </a>
+
+                <a href="{% url 'upload_resume' %}" 
+                   class="btn secondary-btn">
+                   Update Resume
+                </a>
+
+            </div>
+
+        {% else %}
+
+            <!-- ===== No Resume ===== -->
+            <p class="warning-text">⚠ No Resume Uploaded Yet</p>
+
+            <div class="btn-group">
+
+                <a href="{% url 'upload_resume' %}" 
+                   class="btn">
+                   Upload Resume
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

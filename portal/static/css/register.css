@@ -1,0 +1,223 @@
+/* ===== PAGE BACKGROUND ===== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0D1B2A; /* solid dark navy background */
+    min-height: 100vh;
+    color: #FFFFFF;
+}
+
+/* ===== AUTH SECTION ===== */
+.auth-section {
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== CONTAINER ===== */
+.auth-container {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6); /* deeper shadow for dark theme */
+    border-radius: 50px;
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: center;
+}
+
+/* ===== LEFT INFO ===== */
+.register-info {
+    color: #FFFFFF;
+    padding-left: 30px;
+    
+}
+
+.register-info h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #f9fafa; /* primary blue */
+}
+
+.info-sub {
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.7;
+    color: #94A3B8; /* muted gray */
+}
+
+/* ===== INFO CARDS ===== */
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-card {
+    background: rgba(30, 58, 138, 0.3); /* accent navy glass effect */
+    padding: 18px 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    background: rgba(30, 58, 138, 0.5);
+}
+h2 i {
+    margin-right: 10px; /* space between icon and text */
+    color: #5870b2; /* primary blue accent */
+    font-size: 32px;    /* match heading size */
+    vertical-align: middle;
+}
+.info-card h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #f9f9f9;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: #797979;
+}
+
+/* ===== REGISTER BOX ===== */
+/* ===== REGISTER BOX WITH GRADIENT ===== */
+.register-box {
+    background: linear-gradient(235deg,#33477d, #041029); /* gradient from primary blue to accent navy */
+    padding: 40px 35px;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+    color: #FFFFFF; /* white text inside */
+    border: 1px solid rgba(255,255,255,0.1); /* subtle border for contrast */
+}
+
+
+/* ===== TITLE ===== */
+.register-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+}
+
+.register-subtitle {
+    text-align: center;
+    color: #94A3B8;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+/* ===== FORM ERRORS ===== */
+.form-errors {
+    background: #FEE2E2;
+    border: 1px solid #F87171;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #DC2626;
+    font-size: 14px;
+    margin: 0;
+    padding: 2px 0;
+}
+
+.field-errors {
+    margin-top: 5px;
+}
+
+.field-help {
+    font-size: 12px;
+    color: #6B7280;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* ===== FORM ===== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #EEF1F5;
+}
+
+/* ===== INPUT ===== */
+.form-group input,
+.form-group select {
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #2563EB; /* primary blue border */
+    background: #EEF1F5; /* light surface for contrast */
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+    color: #0D1B2A;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1E3A8A; /* accent navy on focus */
+    background: #FFFFFF;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* ===== BUTTON ===== */
+.auth-btn {
+    width: 100%;
+    height: 44px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(530deg, #33477d, #041029); /* inverse gradient for button */
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #2563EB, #1E3A8A); /* hover gradient */
+}
+
+/* ===== LOGIN LINK ===== */
+.auth-switch {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-switch a {
+    color: #2563EB; /* primary blue */
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+    .register-info {
+        text-align: center;
+    }
+    .info-cards {
+        align-items: center;
+    }
+    .info-card {
+        max-width: 320px;
+    }
+}

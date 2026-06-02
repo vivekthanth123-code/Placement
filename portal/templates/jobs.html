@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="jobs-page">
+
+     
+
+<div class="jobs-container">
+    <div class="header-actions">
+      
+        <a href="{% url 'dashboard' %}" class="back-btn">← Back to Categories</a>
+    </div>
+
+<header class="jobs-header">
+<h2>Latest Job Opportunities</h2>
+<p class="jobs-subtitle">Find your dream placement job</p>
+</header>
+
+<!-- FILTER -->
+<form method="get" class="filter-box">
+
+<div class="job-navbar">
+    <a href="?category=" class="nav-item active">All Jobs</a>
+    <a href="?category=frontend" class="nav-item">Frontend</a>
+    <a href="?category=backend" class="nav-item">Backend</a>
+    <a href="?category=fullstack" class="nav-item">Full Stack</a>
+</div>
+
+</form>
+
+<div class="jobs-grid">
+
+{% for job in jobs %}
+
+<div class="job-card">
+
+<div class="job-top">
+
+{% if job.company_image %}
+<img src="{{ job.company_image.url }}" class="company-img">
+{% else %}
+<img src="{% static 'images/company1.jpg' %}" class="company-img">
+{% endif %}
+
+<div class="company-info">
+<h3 class="company">{{ job.company_name }}</h3>
+<p class="role">{{ job.job_role }}</p>
+</div>
+
+</div>
+
+<div class="job-details">
+
+<p><strong>Category:</strong> {{ job.get_category_display }}</p>
+<p><strong>Salary:</strong> {{ job.salary }}</p>
+<p><strong>Location:</strong> {{ job.location }}</p>
+<p><strong>Last Date:</strong> {{ job.last_date }}</p>
+
+</div>
+
+<a href="{% url 'job_detail' job.id %}" class="apply-btn">
+Apply Now
+</a>
+
+</div>
+
+{% empty %}
+
+<p class="no-jobs">No jobs available</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,230 @@
+/* ===== PAGE ===== */
+
+.result-page{
+    min-height:100vh;
+    background:linear-gradient(135deg,#020617,#0f172a);
+    padding:100px 20px;
+    display:flex;
+    justify-content:center;
+}
+
+
+/* ===== CONTAINER ===== */
+
+.result-container{
+    width:100%;
+    max-width:650px;
+    background:#0f172a;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:40px 30px;
+    box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+
+
+/* ===== TOP BAR ===== */
+
+.result-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.btn-back,
+.btn-history{
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    padding:8px 16px;
+
+    border-radius:20px;
+
+    transition:.25s;
+
+    color:white;
+}
+
+.btn-back{
+    background:#1e293b;
+}
+
+.btn-history{
+    background:#2563eb;
+}
+
+.btn-back:hover{
+    background:#334155;
+}
+
+.btn-history:hover{
+    background:#3b82f6;
+}
+
+
+/* ===== TITLE ===== */
+
+.result-title{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:30px;
+    color:#f1f5f9;
+}
+
+
+/* ===== RESULT BOX ===== */
+
+.result-box{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+
+/* ===== ROW ===== */
+
+.result-row{
+    display:flex;
+    justify-content:space-between;
+    background:#020617;
+    padding:14px 18px;
+    border-radius:10px;
+    border-left:4px solid #3b82f6;
+}
+
+.result-row.pass{
+    border-left-color:#22c55e;
+}
+
+.result-row.fail{
+    border-left-color:#ef4444;
+}
+
+.label{
+    color:#cbd5f5;
+}
+
+.value{
+    font-weight:700;
+    color:#f1f5f9;
+}
+
+
+/* ===== REVIEW SECTION ===== */
+
+.review-section{
+    margin-top:30px;
+}
+
+.review-title{
+    margin-bottom:20px;
+    font-size:20px;
+}
+
+
+/* ===== REVIEW CARD ===== */
+
+.review-card{
+
+    background:#020617;
+
+    padding:16px;
+
+    border-radius:10px;
+
+    margin-bottom:12px;
+
+    border-left:4px solid #3b82f6;
+}
+
+.review-card.correct{
+    border-left-color:#22c55e;
+}
+
+.review-card.wrong{
+    border-left-color:#ef4444;
+}
+
+
+.review-question{
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.review-user{
+    font-size:14px;
+    color:#cbd5f5;
+}
+
+.review-correct{
+    font-size:14px;
+    color:#22c55e;
+}
+
+
+/* ===== FOOTER ===== */
+
+.result-footer{
+    text-align:center;
+    margin-top:35px;
+}
+
+.btn-dashboard{
+
+    display:inline-block;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:white;
+
+    padding:12px 28px;
+
+    border-radius:25px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.btn-dashboard:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(59,130,246,.4);
+}
+
+/* ===== OPTIONS LIST ===== */
+
+.options-list {
+    margin-top: 10px;
+}
+
+.option-item {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: #1e293b;
+    color: #cbd5f5;
+}
+
+.option-item.selected {
+    background: #3b82f6;
+    color: white;
+}
+
+.option-item.correct {
+    background: #22c55e;
+    color: white;
+}
+
+.option-item.selected.correct {
+    background: #22c55e;
+    font-weight: bold;
+}

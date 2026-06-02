@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/student_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-grid">
+
+        <!-- ===== LEFT PROFILE CARD ===== -->
+        <aside class="profile-card">
+
+            <!-- AVATAR DROP ZONE -->
+           <div class="avatar-wrapper">
+   <div class="drop-zone {% if profile.profile_image %}has-image{% endif %}" id="dropZone">
+
+        <form method="POST" enctype="multipart/form-data" id="photoForm">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="photo">
+            <input type="file" id="profileUpload" name="profile_image" accept="image/*">
+        </form>
+
+        <svg class="ring-dash" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="57" fill="none" stroke="#C9A84C"
+                    stroke-width="2" stroke-dasharray="10 7" stroke-opacity="0.4"/>
+        </svg>
+
+        <div class="upload-icon">
+            <i class="fa-solid fa-camera"></i>
+            <span class="upload-text">Choose</span>
+        </div>
+
+        {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" class="preview has-image" id="previewImg">
+        {% else %}
+            <img class="preview" id="previewImg" style="display:none;">
+        {% endif %}
+
+    </div>
+</div>
+
+            <!-- NAME + BRANCH -->
+            <h2 class="student-name">{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+            <p class="student-branch">{{ profile.branch|default:"Not specified" }}</p>
+
+            <!-- QUICK INFO BADGES -->
+            <div class="quick-info">
+                <div class="qi-box">
+                    <i class="fa-solid fa-id-badge"></i>
+                    <strong>#{{ request.user.id|stringformat:"06d" }}</strong>
+                    <span>ID</span>
+                </div>
+                <div class="qi-box1">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <strong class="active">Active</strong>
+                    <span>Status</span>
+                </div>
+                <div class="qi-box2">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <strong class="active">Open</strong>
+                    <span>Placement</span>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ===== RIGHT DETAILS CARD ===== -->
+        <main class="details-card">
+
+            <!-- PROFILE EDIT -->
+            <section class="profile-section section-block">
+                <div class="section-header">
+                    <i class="fa-solid fa-user"></i>
+                    <h3>Edit Profile</h3>
+                </div>
+
+                <form method="POST" class="profile-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="profile">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" value="{{ request.user.username }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="{{ request.user.email }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" name="phone" value="{{ profile.phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Branch</label>
+                            <select name="branch">
+                                <option value="">-- Select Branch --</option>
+                                <option value="BCA"     {% if profile.branch == "BCA"     %}selected{% endif %}>BCA</option>
+                                <option value="BSc.IT"  {% if profile.branch == "BSc.IT"  %}selected{% endif %}>BSc.IT</option>
+                                <option value="Diploma" {% if profile.branch == "Diploma" %}selected{% endif %}>Diploma</option>
+                                <option value="MCA"     {% if profile.branch == "MCA"     %}selected{% endif %}>MCA</option>
+                                <option value="B.Tech"  {% if profile.branch == "B.Tech"  %}selected{% endif %}>B.Tech</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Expected Salary (₹)</label>
+                            <input type="number" name="expected_salary"
+                                   value="{{ profile.expected_salary }}"
+                                   placeholder="e.g. 500000">
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Technology</label>
+                            <select name="technology">
+                                <option value="">-- Select Technology --</option>
+                                <option value="Python"     {% if profile.technology == "Python"     %}selected{% endif %}>Python Developer</option>
+                                <option value="Java"       {% if profile.technology == "Java"       %}selected{% endif %}>Java Developer</option>
+                                <option value="JavaScript" {% if profile.technology == "JavaScript" %}selected{% endif %}>JavaScript Developer</option>
+                                <option value="Full Stack" {% if profile.technology == "Full Stack" %}selected{% endif %}>Full Stack Developer</option>
+                                <option value="Frontend"   {% if profile.technology == "Frontend"   %}selected{% endif %}>Frontend Developer</option>
+                                <option value="Backend"    {% if profile.technology == "Backend"    %}selected{% endif %}>Backend Developer</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label>Experience</label>
+                            <input type="text" name="experience" value="{{ profile.experience }}">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-gradient">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Profile
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- RESUME -->
+            <section class="section-block" style="margin-top: 20px;">
+                <div class="section-header">
+                    <i class="fa-solid fa-file"></i>
+                    <h3>Your Resume</h3>
+                </div>
+                {% if resume and resume.resume_file %}
+                    <a href="{{ resume.resume_file.url }}" target="_blank" class="btn btn-gradient">
+                        <i class="fa-solid fa-eye"></i> View Resume
+                    </a>
+                {% else %}
+                    <p class="no-resume">Resume not uploaded yet.</p>
+                {% endif %}
+            </section>
+
+            <!-- APPLIED JOBS -->
+            <section class="section-block" style="margin-top: 25px;">
+                <div class="section-header">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h3>Applied Jobs</h3>
+                </div>
+                {% if applied_jobs %}
+                    <div class="applied-jobs-list">
+                        {% for application in applied_jobs %}
+                        <div class="applied-job-card">
+                            <div class="job-left">
+                                <h4>{{ application.job.job_role }}</h4>
+                                <p class="company">{{ application.job.company_name }}</p>
+                                <span class="applied-date">Applied on {{ application.applied_at|date:"M d, Y" }}</span>
+                            </div>
+                            <div class="job-right">
+                                <a href="{% url 'job_detail' application.job.id %}" class="btn btn-gradient btn-sm">
+                                    <i class="fa-solid fa-eye"></i> View Job
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-resume">You have not applied to any jobs yet.</p>
+                {% endif %}
+            </section>
+
+            <!-- PLACEMENT TIPS -->
+            <section class="placement-info section-block" style="margin-top: 20px;">
+                <div class="section-header">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h3>Placement Tips</h3>
+                </div>
+                <ul class="tips-list">
+                    <li>✔ Keep your resume updated regularly</li>
+                    <li>✔ Apply before deadlines</li>
+                    <li>✔ Maintain required CGPA</li>
+                    <li>✔ Check dashboard daily</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<script>
+    const profileUpload = document.getElementById('profileUpload');
+    const previewImg    = document.getElementById('previewImg');
+    const dropZone      = document.getElementById('dropZone');
+    const photoForm     = document.getElementById('photoForm');
+
+    profileUpload.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+      reader.onload = e => {
+    previewImg.src = e.target.result;
+    previewImg.style.display = "block";
+    dropZone.classList.add('has-image');
+    photoForm.submit();
+};
+        reader.readAsDataURL(file);
+    });
+</script>
+{% endblock %}

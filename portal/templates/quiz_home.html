@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/quiz_home.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="quiz-page">
+
+    <!-- Decorative Background -->
+    <div class="bg-blur bg1"></div>
+    <div class="bg-blur bg2"></div>
+
+     <a href="{% url 'dashboard' %}" class="btn-back">
+                ← Back to Dashboard
+            </a>
+
+    <div class="quiz-container">
+
+        <div class="quiz-header">
+            <h1 class="quiz-heading">Choose Quiz Category</h1>
+            <p class="quiz-subtitle">
+                Select a category and challenge your knowledge
+            </p>
+        </div>
+
+        <div class="category-grid">
+
+            {% for cat in categories %}
+            <a href="{% url 'category_quiz' cat.slug %}" class="cat-card">
+
+                <div class="cat-badge">
+                    <!-- Replace emoji with Font Awesome icon -->
+                    <i class="fas fa-brain"></i>
+                </div>
+
+                <div class="cat-content">
+                    <h3 class="cat-title">{{ cat.name|upper }}</h3>
+                    <p class="cat-desc">
+                        Test your knowledge in {{ cat.name }} and improve your skills.
+                    </p>
+                    <span class="start-btn">Start Quiz <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+            </a>
+
+            {% empty %}
+            <p class="no-data">No categories available.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

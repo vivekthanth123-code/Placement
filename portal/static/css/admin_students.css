@@ -1,0 +1,44 @@
+.admin-container {
+    padding: 30px;
+}
+
+.admin-title {
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+.table-wrapper {
+    background: #111;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+
+.admin-table th {
+    background: #000;
+    color: #ffd700;
+}
+
+.btn-delete {
+    background: #ff4d4d;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-delete:hover {
+    background: #ff0000;
+}

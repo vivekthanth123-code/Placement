@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+<div class="dashboard-container">
+
+<!-- Header -->
+<header class="dashboard-header">
+    <h1>Welcome To  Dashboard</h1>
+    <p>Manage your placement preparation from one place</p>
+</header>
+
+
+<!-- Stats Boxes -->
+<div class="stats-grid">
+
+    <div class="stat-box">
+        <h2>120+</h2>
+        <p>Practice Questions</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>35</h2>
+        <p>Companies Hiring</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>10</h2>
+        <p>Study Materials</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>5</h2>
+        <p>Mock Tests</p>
+    </div>
+
+</div>
+
+
+<!-- Main Feature Cards -->
+<div class="feature-grid">
+
+  <a href="{% url 'quiz_home' %}" class="feature-card">
+      <i class="fa-solid fa-brain fa-2x" style="margin-bottom:10px;"></i>
+      <p>Quiz Practice</p>
+  </a>
+
+  <a href="{% url 'study_materials' %}" class="feature-card">
+      <i class="fa-solid fa-book-open fa-2x" style="margin-bottom:10px;"></i>
+      <p>Study Materials</p>
+  </a>
+
+  <a href="{% url 'upload_resume' %}" class="feature-card">
+      <i class="fa-solid fa-file-lines fa-2x" style="margin-bottom:10px;"></i>
+      <p>Upload Resume</p>
+  </a>
+
+  <a href="{% url 'jobs' %}" class="feature-card">
+      <i class="fa-solid fa-briefcase fa-2x" style="margin-bottom:10px;"></i>
+      <p>Job Opportunities</p>
+  </a>
+
+</div>
+
+
+<!-- Career Tips -->
+<div class="career-card">
+
+<h3> Career Tips</h3>
+
+<p>
+Practice aptitude daily, keep your resume updated, and apply to internships regularly.
+Consistency is the key to placement success.
+</p>
+
+</div>
+
+</div>
+</section>
+
+{% endblock %}

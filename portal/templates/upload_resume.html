@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/upload_resume.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main class="upload-resume-page">
+
+    <!-- ================= UPLOAD SECTION ================= -->
+    <section class="upload-section">
+        <div class="container">
+
+         <div class="header-actions">
+      
+        <a href="{% url 'dashboard' %}" class="back-btn">← Back to Categories</a>
+    </div>
+
+
+            <form method="POST"
+                  enctype="multipart/form-data"
+                  class="upload-form"
+                  aria-labelledby="upload-title">
+
+                {% csrf_token %}
+
+                <div class="resume-upload-box">
+
+                    <!-- TITLE -->
+                    <header class="upload-header">
+                        <h1 id="upload-title" class="upload-title">
+                             Upload Your Resume
+                        </h1>
+                    </header>
+
+                    <!-- FILE INPUT -->
+                    <div class="file-input-group">
+
+                        <label for="resume" class="custom-file-label">
+                            Choose Resume
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                            required
+                        >
+
+                        <p class="file-name" id="file-name">
+                            No file chosen
+                        </p>
+
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <button type="submit" class="upload-btn">
+                        Upload Resume
+                    </button>
+
+                    <!-- SUCCESS MESSAGE -->
+                    {% if message %}
+                    <div class="message-container">
+                        <p class="success-msg">{{ message }}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+
+    <!-- ================= GUIDELINES ================= -->
+    <section class="resume-guidelines">
+
+        <div class="container">
+
+            <header class="guidelines-header">
+                <h2> Build a Placement-Ready Resume</h2>
+            </header>
+
+            <div class="resume-info">
+
+                <!-- CARD 1 -->
+                <article class="resume-card">
+                    <h3> What Your Resume Must Include</h3>
+
+                    <ul>
+                        <li>✔ Personal Information</li>
+                        <li>✔ Career Objective</li>
+                        <li>✔ Technical Skills</li>
+                        <li>✔ Academic Qualification</li>
+                        <li>✔ Projects & Internship</li>
+                        <li>✔ Certifications</li>
+                        <li>✔ Achievements</li>
+                    </ul>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="resume-card">
+                    <h3> Common Resume Mistakes</h3>
+
+                    <ul>
+                        <li> Too much text</li>
+                        <li> Spelling mistakes</li>
+                        <li> Unprofessional email</li>
+                        <li> No projects mentioned</li>
+                        <li> Bad formatting</li>
+                    </ul>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= JS ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const fileInput = document.getElementById("resume");
+    const fileName = document.getElementById("file-name");
+
+    fileInput.addEventListener("change", () => {
+
+        if(fileInput.files.length > 0){
+            fileName.textContent = fileInput.files[0].name;
+        } else{
+            fileName.textContent = "No file chosen";
+        }
+
+    });
+
+});
+</script>
+
+{% endblock %}

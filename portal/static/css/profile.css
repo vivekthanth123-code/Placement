@@ -1,0 +1,168 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body{
+    background: linear-gradient(135deg,#020617,#0b1c3f);
+    font-family:'Poppins',sans-serif;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 24px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    color:black;
+    background:linear-gradient(684deg,#4a90e2,#0b1c3f);
+    transition:.3s;
+    margin-left: -200px;
+    margin-top: 20px;
+    box-shadow:var(--shadow);
+}
+
+.back-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-hover);
+} 
+
+
+/* ================= PAGE WRAPPER ================= */
+
+.profile-wrapper{
+    max-width:1000px;
+    margin:80px auto;
+    padding:0 20px;
+}
+
+
+/* ================= RESUME BOX ================= */
+
+.profile-resume-box{
+
+    width:100%;
+    max-width:600px;
+
+    margin:150px auto;
+
+    padding:45px 40px;
+
+    border-radius:18px;
+
+    background:linear-gradient(145deg,#1a233e,#0b1c3f);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(0,0,0,0.6);
+
+    transition:0.35s;
+}
+
+.profile-resume-box:hover{
+    transform:translateY(-5px);
+    box-shadow:0 30px 70px rgba(0,0,0,0.8);
+}
+
+
+/* ================= TITLE ================= */
+
+.profile-resume-box h3{
+
+    font-size:28px;
+
+    color:#ffffff;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+}
+
+
+/* ================= STATUS TEXT ================= */
+
+.success-text{
+    color:#22c55e;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.warning-text{
+    color:#f59e0b;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+
+/* ================= BUTTON GROUP ================= */
+
+.btn-group{
+    margin-top:15px;
+}
+
+
+/* ================= BUTTON ================= */
+
+.btn{
+
+    display:inline-block;
+
+    padding:12px 26px;
+
+    margin:8px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:linear-gradient(135deg,#4a90e2,#2563eb);
+
+    transition:0.25s;
+
+    box-shadow:0 8px 20px rgba(74,144,226,0.35);
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(74,144,226,0.5);
+}
+
+
+/* ================= SECONDARY BUTTON ================= */
+
+.secondary-btn{
+
+    background:transparent;
+
+    border:1px solid #4a90e2;
+
+    color:#4a90e2;
+
+    box-shadow:none;
+}
+
+.secondary-btn:hover{
+    background:rgba(74,144,226,0.1);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:600px){
+
+.profile-resume-box{
+    padding:35px 25px;
+}
+
+.btn{
+    width:100%;
+    margin:8px 0;
+}
+
+}

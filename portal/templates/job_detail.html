@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/job_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="job-detail-container">
+
+    <div class="job-detail-card">
+
+        <!-- ===== HEADER ===== -->
+        <div class="company-header">
+            {% if job.company_image %}
+                <img src="{{ job.company_image.url }}" class="company-logo" alt="company">
+            {% else %}
+                <img src="{% static 'images/company1.jpg' %}" class="company-logo" alt="company">
+            {% endif %}
+
+            <div class="header-text">
+                <h1 class="job-title">{{ job.job_role }}</h1>
+                <h3 class="company-name">{{ job.company_name }}</h3>
+                <p class="posted-date">
+                    Posted on {{ job.posted_at|date:"M d, Y" }}
+                </p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ===== JOB INFO GRID ===== -->
+        <div class="job-info-grid">
+
+            <div class="info-box">
+                <span>Category</span>
+                <p>{{ job.get_category_display }}</p>
+            </div>
+
+            <div class="info-box">
+                <span>Salary</span>
+                <p>{{ job.salary|default:"Not Disclosed" }}</p>
+            </div>
+
+            <div class="info-box">
+                <span>Location</span>
+                <p>{{ job.location|default:"Not Mentioned" }}</p>
+            </div>
+
+            <div class="info-box">
+                <span>Apply Before</span>
+                <p>{{ job.last_date|date:"M d, Y" }}</p>
+            </div>
+
+        </div>
+
+        <!-- ===== DESCRIPTION SECTION (OUTSIDE GRID) ===== -->
+        <hr class="divider">
+
+        <div class="job-description">
+
+            {% if job.description %}
+                <h3>Job Description</h3>
+                <p>{{ job.description }}</p>
+            {% endif %}
+
+            {% if job.requirements %}
+                <h3>Requirements</h3>
+                <p>{{ job.requirements }}</p>
+            {% endif %}
+
+            {% if job.skills_required %}
+                <h3>Skills Required</h3>
+                <p>{{ job.skills_required }}</p>
+            {% endif %}
+
+            {% if job.experience %}
+                <h3>Experience</h3>
+                <p>{{ job.experience }}</p>
+            {% endif %}
+
+        </div>
+
+        <!-- ===== APPLY SECTION ===== -->
+        <hr class="divider">
+
+        <div class="apply-section">
+            {% if already_applied %}
+                <button class="applied-btn" disabled>
+                    You Already Applied
+                </button>
+            {% else %}
+                <a href="{% url 'apply_job' job.id %}" class="apply-btn">
+                    Apply Now
+                </a>
+            {% endif %}
+
+            <a href="{% url 'jobs' %}" class="back-btn">
+                ← Back to Jobs
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

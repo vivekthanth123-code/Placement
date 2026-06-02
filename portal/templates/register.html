@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+<div class="auth-container">
+
+<!-- LEFT INFO -->
+
+<div class="register-info">
+
+<h2>
+    <i class="fa-solid fa-graduation-cap"></i> Start Your Placement Journey
+</h2>
+
+<p class="info-sub">
+Join the Placement Preparation Portal to practice aptitude,
+build your resume, and stay updated with new company drives.
+</p>
+
+<div class="info-cards">
+
+<div class="info-card">
+<h4> Practice Tests</h4>
+<p>Improve aptitude and technical skills.</p>
+</div>
+
+<div class="info-card">
+<h4> Resume Builder</h4>
+<p>Create professional resumes easily.</p>
+</div>
+
+<div class="info-card">
+<h4> Job Alerts</h4>
+<p>Get instant placement notifications.</p>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- REGISTER FORM -->
+
+<div class="register-box">
+
+<h2 class="register-title">Create Account</h2>
+<p class="register-subtitle" >Register for placement preparation</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<!-- Display non-field errors -->
+{% if form.non_field_errors %}
+<div class="form-errors">
+    {% for error in form.non_field_errors %}
+    <p class="error-message">{{ error }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% for field in form %}
+<div class="form-group">
+
+<label>{{ field.label }}</label>
+
+{{ field }}
+
+{% if field.help_text %}
+<div class="field-help">{{ field.help_text }}</div>
+{% endif %}
+
+{% if field.errors %}
+<div class="field-errors">
+    {% for error in field.errors %}
+    <small class="error-message">{{ error }}</small>
+    {% endfor %}
+</div>
+{% endif %}
+
+</div>
+{% endfor %}
+
+
+{% for field in profile_form %}
+<div class="form-group">
+
+<label>{{ field.label }}</label>
+
+{{ field }}
+
+{% if field.errors %}
+<small>{{ field.errors }}</small>
+{% endif %}
+
+</div>
+{% endfor %}
+
+
+<button type="submit" class="auth-btn">
+Create Account
+</button>
+
+<p class="auth-switch">
+Already have an account?
+<a href="{% url 'login' %}">Login</a>
+</p>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

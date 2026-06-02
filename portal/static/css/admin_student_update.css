@@ -1,0 +1,43 @@
+/* ===== INPUT GROUP ===== */
+.input-group {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffd700;
+    font-size: 14px;
+}
+
+.input-group input {
+    padding-left: 38px;
+}
+
+/* floating label */
+.input-group label {
+    position: absolute;
+    left: 38px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 13px;
+    pointer-events: none;
+    transition: 0.25s ease;
+    background: transparent;
+}
+
+/* when typing */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -7px;
+    left: 32px;
+    font-size: 11px;
+    color: #ffd700;
+    background: #141414;
+    padding: 0 6px;
+    border-radius: 4px;
+}   

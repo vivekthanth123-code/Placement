@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jobs-container">
+
+    <h2>{{ job.company_name }}</h2>
+    <p class="role">{{ job.job_role }}</p>
+
+    <div class="job-details">
+        <p><strong>Category:</strong> {{ job.get_category_display }}</p>
+        <p><strong>Eligibility:</strong> {{ job.eligibility }}</p>
+        <p><strong>Salary:</strong> {{ job.salary }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p><strong>Last Date:</strong> {{ job.last_date }}</p>
+    </div>
+
+    <a href="{% url 'apply_job' job.id %}" class="btn">
+        Apply Now
+    </a>
+
+</div>
+
+{% endblock %}

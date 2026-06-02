@@ -1,0 +1,236 @@
+/* ===============================
+   ROOT COLORS
+================================*/
+:root{
+    --primary:#0F172A;
+    --secondary:#1E293B;
+    --accent:#3B82F6;
+
+    --bg:#F1F5F9;
+    --card:#FFFFFF;
+
+    --text-main:#1F2937;
+    --text-muted:#6B7280;
+    --text-light:#FFFFFF;
+
+    --border:#E5E7EB;
+
+    --shadow:0 8px 25px rgba(0,0,0,0.08);
+    --shadow-hover:0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   GLOBAL
+================================*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text-main);
+    margin-top: 5%;
+}
+
+/* ===============================
+   CONTAINER
+================================*/
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
+}
+
+/* ===============================
+   PAGE HEADER
+================================*/
+.page-header{
+    text-align:center;
+    padding:80px 0 40px;
+}
+
+.page-title{
+    font-size:2.5rem;
+    font-weight:700;
+    color:var(--primary);
+    margin-bottom:10px;
+    margin-top: 20xp;
+}
+
+.page-subtitle{
+    max-width:650px;
+    margin:auto;
+    color:var(--text-muted);
+    font-size:1rem;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 24px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    color:var(--text-light);
+    background:linear-gradient(135deg,#2563EB,#1D4ED8);
+    transition:.3s;
+    margin-top: 20px;
+    box-shadow:var(--shadow);
+}
+
+.back-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-hover);
+}
+
+/* ===============================
+   MATERIALS SECTION
+================================*/
+.materials-section{
+    padding:40px 0 60px;
+}
+
+.materials-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+}
+
+/* ===============================
+   MATERIAL CARD
+================================*/
+.material-card{
+    background:var(--card);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+    transition:all .35s ease;
+}
+
+.material-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow-hover);
+}
+
+/* CARD HEADER */
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.card-header h3{
+    font-size:30px;
+    margin-left: 40%;
+    font-weight:600;
+    color:var(--primary);
+    
+}
+
+.file-icon{
+    font-size:22px;
+    color:var(--accent);
+}
+
+/* DATE */
+
+.upload-date{
+    font-size:.9rem;
+    color:var(--text-muted);
+    margin-bottom:20px;
+    margin-left: 40%;
+}
+
+/* ===============================
+   BUTTONS
+================================*/
+.card-actions{
+    display:flex;
+    gap:10px;
+}
+
+.view-btn,
+.download-btn{
+    flex:1;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:.9rem;
+    font-weight:600;
+    transition:.25s;
+}
+
+/* VIEW BUTTON */
+
+.view-btn{
+    border:1px solid var(--border);
+    color:white;
+     background:linear-gradient(135deg,#2563EB,#3B82F6);
+}
+
+.view-btn:hover{
+    background:#4f4f4f;
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn{
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+    color:#fff;
+}
+
+.download-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ===============================
+   EMPTY STATE
+================================*/
+.no-materials{
+    text-align:center;
+    padding:60px 20px;
+    border:1px dashed var(--border);
+    border-radius:12px;
+    color:var(--text-muted);
+}
+
+/* ===============================
+   FOOTER
+================================*/
+.footer{
+    text-align:center;
+    padding:40px 0;
+    margin-top:60px;
+    border-top:1px solid var(--border);
+    color:var(--text-muted);
+}
+
+/* ===============================
+   RESPONSIVE
+================================*/
+@media(max-width:768px){
+
+.page-title{
+    font-size:2rem;
+}
+
+.material-card{
+    padding:20px;
+}
+
+.card-actions{
+    flex-direction:column;
+}
+
+}

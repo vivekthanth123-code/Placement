@@ -1,0 +1,111 @@
+  * {
+      margin: 0%;
+      padding: 0%;
+  }
+
+  .main {
+      background-color: brown;
+  }
+
+  .wrapper {
+      max-width: 1170px;
+      margin: auto;
+  }
+
+
+  .main-box {
+      height: 200px;
+      display: flex;
+      background-color: black;
+  }
+
+
+
+  .box {
+      background-color: aqua;
+      height: 50%;
+      width: 25%;
+  }
+
+  .box2 {
+      background-color: rgb(45, 235, 61);
+      height: 50%;
+      width: 25%;
+  }
+
+  .main-box2 {
+      background-color: rgb(219, 252, 36);
+      height: 100%;
+      width: 50%;
+  }
+
+.main--2{
+    background-color: rgb(192, 24, 94);
+}
+
+
+
+  .wrapper2{
+      max-width: 1170px;
+      margin: auto;
+
+  }
+
+  .main2 {
+      background-color: blue;
+      display: flex;
+      height: 500px;
+      width: 100%;
+  }
+  .a{
+    width: 50%;
+    height: 50%;
+    background-color: aqua;
+  }
+  .b{
+     width: 50%;
+    height: 100%;
+    background-color: rgb(240, 144, 203);
+  }
+   .main-5 {
+      background-color: rgb(117, 112, 187);
+  }
+
+  .wrapper {
+      max-width: 1170px;
+      margin: auto;
+  }
+
+
+  .main-box1 {
+      height: 200px;
+      display: flex;
+      background-color: rgb(216, 81, 81);
+  }
+
+
+
+  .box-1{
+      background-color: aqua;
+      height: 50%;
+      width: 25%;
+  }
+
+  .box-2 {
+      background-color: rgb(78, 231, 116);
+      height: 100%;
+      width: 25%;
+  }
+
+  .main-box-2 {
+      background-color: rgb(76, 36, 116);
+      height: 100%;
+      width: 25%;
+  }
+  .box-3{
+    background-color: cornflowerblue;
+    width: 25%;
+    height: 50%;
+  }
+
+   

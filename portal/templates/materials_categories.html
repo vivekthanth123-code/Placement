@@ -1,0 +1,86 @@
+<!-- ================= NEXT LEVEL STUDY MATERIAL UI ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Materials</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+  /* BACK BUTTON
+/* 
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 24px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    color:black;
+    background:linear-gradient(135deg,#2563EB,#1D4ED8);
+    transition:.3s;
+    margin-left: -200px;
+    margin-top: 20px;
+    box-shadow:var(--shadow);
+}
+
+.back-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-hover);
+} */ 
+
+ 
+</style>
+<body class="bg-gradient-to-br from-black via-gray-900 to-black text-white min-h-screen">
+
+   <!-- <div class="header-actions">
+      
+        <a href="{% url 'material_categories' %}" class="back-btn">← Back to Categories</a>
+    </div>
+    -->
+
+  <!-- HEADER -->
+  <header class="text-center py-10">
+    <h1 class="text-4xl font-bold tracking-wide">
+      Programming Skills for Placement
+    </h1>
+    <p class="text-gray-400 mt-2">Access and download study materials</p>
+  </header>
+
+  <!-- CATEGORY SECTION -->
+  <section class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-6">Study Material Categories</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      {% for cat in categories %}
+      <div class="group relative bg-gray-900 border border-yellow-400/40 rounded-2xl p-6 hover:shadow-yellow-500/30 hover:shadow-xl transition duration-300">
+
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold text-yellow-400">{{ cat.name }}</h3>
+          <span class="text-2xl"></span>
+        </div>
+
+        <p class="text-gray-400 mt-3 text-sm">
+          Click below to explore all materials for {{ cat.name }}.
+        </p>
+
+        <a href="{% url 'material_list' cat.id %}"
+           class="mt-6 inline-block w-full text-center bg-yellow-400 text-black font-semibold py-2 rounded-xl hover:bg-yellow-300 transition">
+          Open Materials
+        </a>
+
+      </div>
+      {% endfor %}
+
+    </div>
+  </section>
+
+  
+  <footer class="text-center text-gray-500 py-10 text-sm">
+    © 2026 Placement Portal • Built with Django 
+  </footer>
+
+</body>
+</html>

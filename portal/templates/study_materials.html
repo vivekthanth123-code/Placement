@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/study_materials.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ===== Skills Section ===== -->
+<section class="skills-info">
+    <h2>Programming Skills for Placement</h2>
+
+    <div class="skills-grid">
+
+        {% for cat in categories %}
+        <div class="skill-card">
+
+            <h3> {{ cat.name }}</h3>
+
+            <p class="desc">
+                Click below to access {{ cat.name }} materials
+            </p>
+
+            <a href="{% url 'material_list' cat.id %}" class="btn">
+                Open Materials
+            </a>
+
+        </div>
+        {% empty %}
+            <p>No categories available.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+<!-- ===== Study Materials Section ===== -->
+<section class="materials-container">
+
+
+    {% if materials %}
+        <div class="materials-grid">
+            {% for material in materials %}
+            <div class="material-card">
+
+                <h3>{{ material.title }}</h3>
+                <p class="category">{{ material.category }}</p>
+                <p class="desc">{{ material.description }}</p>
+
+                {% if material.file %}
+                    <a href="{{ material.file.url }}" class="btn" target="_blank">
+                        Download
+                    </a>
+                {% elif material.link %}
+                    <a href="{{ material.link }}" class="btn" target="_blank">
+                        View
+                    </a>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        
+    {% endif %}
+
+</section>
+
+{% endblock %}
