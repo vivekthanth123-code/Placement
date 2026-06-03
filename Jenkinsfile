@@ -77,7 +77,7 @@ pipeline {
                         git config user.name "Jenkins"
                         git config user.email "jenkins@example.com"
 
-                        git add django-deployment.yaml
+                        git add .
                         git commit -m "Update image to ${imgtag}" || true
                         git push origin main
                         '''
