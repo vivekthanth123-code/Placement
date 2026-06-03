@@ -64,6 +64,7 @@ pipeline {
                     pwd
                     ls -al
                     sed -i 's|image: django-app:.*|image: ${dockerhub}/${imgname}:${imgtag}|g' django-deployment.yaml
+                    cat django-deployment.yaml
                     """
             }
         }
@@ -82,6 +83,7 @@ pipeline {
                         git config user.email "jenkins@example.com"
 
                         git add .
+                        git status
                         git commit -m "Update image to ${imgtag}" || true
                         git push origin main
                         '''
