@@ -1,29 +1,30 @@
 pipeline {
     agent any
 
-
     environment {
-        imgname = "python1"
-        imgtag  = "${BUILD_NUMBER}"
+        imgname   = "python1"
+        imgtag    = "${BUILD_NUMBER}"
         dockerhub = "vivekthanth1"
     }
 
-
     stages {
 
-        stage('First') {
+        stage('Checkout App Repo') {
             steps {
-                sh 'git clone -f https://github.com/vivekthanth123-code/Placement.git'
+                git branch: 'main',
+                    url: 'https://github.com/vivekthanth123-code/Placement.git'
             }
         }
 
-        stage('Second') {
+        stage('Build Image') {
             steps {
-                sh 'docker build -t ${dockerhub}/${imgname}:${imgtag} .'
+                sh '''
+                docker build -t ${dockerhub}/${imgname}:${imgtag} .
+                '''
             }
         }
 
-        stage('Third') {
+        stage('Push Image') {
             steps {
                 withCredentials([
                     usernamePassword(
@@ -39,15 +40,45 @@ pipeline {
                 }
             }
         }
-        stage('Fourth') {
+
+        stage('Checkout Manifest Repo') {
             steps {
-                sh 'docker container rm -f  python1-container'
+                dir('manifest') {
+                    git branch: 'main',
+                        url: 'https://github.com/vivekthanth123-code/manifest.git'
+                }
             }
         }
 
-        stage('Fifth') {
+        stage('Update Deployment') {
             steps {
-                sh 'docker run -d -p 5000:5000 --name python1-container ${dockerhub}/${imgname}:${imgtag}'
+                dir('manifest') {
+                    sh """
+                    sed -i 's|image: django-app:.*|image: ${dockerhub}/${imgname}:${imgtag}|g' django-deployment.yaml
+                    """
+                }
+            }
+        }
+
+        stage('Push Manifest Changes') {
+            steps {
+                dir('manifest') {
+                    withCredentials([
+                        gitUsernamePassword(
+                            credentialsId: 'github',
+                            gitToolName: 'Default'
+                        )
+                    ]) {
+                        sh '''
+                        git config user.name "Jenkins"
+                        git config user.email "jenkins@example.com"
+
+                        git add django-deployment.yaml
+                        git commit -m "Update image to ${imgtag}" || true
+                        git push origin main
+                        '''
+                    }
+                }
             }
         }
     }
