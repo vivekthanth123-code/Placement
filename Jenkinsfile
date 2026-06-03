@@ -63,7 +63,7 @@ pipeline {
                     sh """
                     pwd
                     ls -al
-                    sed -i 's|image: django-app:.*|image: ${dockerhub}/${imgname}:${imgtag}|g' django-deployment.yaml
+                    sed -i 's|image: vivekthanth1/python1:.*|image: ${dockerhub}/${imgname}:${imgtag}|g' django-deployment.yaml
                     cat django-deployment.yaml
                     """
             }
