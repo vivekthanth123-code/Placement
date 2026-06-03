@@ -55,15 +55,13 @@ pipeline {
                 }
         }
         stage('Update Deployment') {
-            steps {
-                dir('manifest') {
+            steps {  
                     sh """
                     pwd
                     ls -al
                     git pull
                     sed -i 's|image: django-app:.*|image: ${dockerhub}/${imgname}:${imgtag}|g' django-deployment.yaml
                     """
-                }
             }
         }
 
