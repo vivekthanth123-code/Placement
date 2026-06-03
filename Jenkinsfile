@@ -11,6 +11,10 @@ pipeline {
 
         stage('Checkout App Repo') {
             steps {
+                sh """
+                    pwd
+                    ls -al
+                    """
                 git branch: 'main',
                     url: 'https://github.com/vivekthanth123-code/Placement.git'
             }
