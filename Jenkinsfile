@@ -41,19 +41,25 @@ pipeline {
             }
         }
 
+        // stage('Checkout Manifest Repo') {
+        //     steps {
+        //         dir('manifest') {
+        //             git branch: 'main',
+        //                 url: 'https://github.com/vivekthanth123-code/manifest.git'
+        //         }
+        //     }
+        // }
         stage('Checkout Manifest Repo') {
             steps {
-                dir('manifest') {
-                    git branch: 'main',
-                        url: 'https://github.com/vivekthanth123-code/manifest.git'
+                git branch: 'main', url: 'https://github.com/vivekthanth123-code/manifest.git'
                 }
-            }
         }
-
         stage('Update Deployment') {
             steps {
                 dir('manifest') {
                     sh """
+                    pwd
+                    ls -al
                     sed -i 's|image: django-app:.*|image: ${dockerhub}/${imgname}:${imgtag}|g' django-deployment.yaml
                     """
                 }
