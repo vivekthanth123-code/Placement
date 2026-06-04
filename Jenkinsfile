@@ -90,28 +90,31 @@ pipeline {
                     }
                 }
             }
-        stage('Deploy on Remote Server') {
-    steps {
-        script {
-            def remote = [
-                name: 'k8s-server',
-                host: '98.93.61.82',
-                user: 'ubuntu',
-                credentialsId: 'k8skey',
-                allowAnyHosts: true
-            ]
+        stage('K8s deploy') {
+            steps {
+                script {
+                    withCredentials([
+                        sshUserPrivateKey(
+                            credentialsId: 'k8skey',
+                            keyFileVariable: 'identity',
+                            usernameVariable: 'userName'
+                        )
+                    ]) {
 
-            sshCommand remote: remote, command: '''
-                cd ~/manifest
+                        def remote = [:]
+                        remote.name = 'k8snode'
+                        remote.host = '98.93.61.82'
+                        remote.user = userName
+                        remote.identityFile = identity
+                        remote.allowAnyHosts = true
 
-                git pull origin main
-
-                kubectl apply -f django-deployment.yaml
-
-            '''
+                        sshCommand remote: remote, command: 'cd ~/manifest'
+                        sshCommand remote: remote, command: 'git pull origin main'
+                        sshCommand remote: remote, command: 'kubectl apply -f django-deployment.yaml'
+                    }
+                }
+            }
         }
-    }
-}
         
     }
 }
