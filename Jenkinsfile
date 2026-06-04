@@ -108,9 +108,7 @@ pipeline {
                         remote.identityFile = identity
                         remote.allowAnyHosts = true
 
-                        sshCommand remote: remote, command: 'cd ~/manifest'
-                        sshCommand remote: remote, command: 'git pull origin main'
-                        sshCommand remote: remote, command: 'kubectl apply -f django-deployment.yaml'
+                        sshCommand remote: remote, command: 'cd ~/manifest  && git pull origin main && kubectl apply -f django-deployment.yaml'
                     }
                 }
             }
