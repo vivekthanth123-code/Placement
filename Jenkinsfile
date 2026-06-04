@@ -90,6 +90,28 @@ pipeline {
                     }
                 }
             }
+        stage('Deploy on Remote Server') {
+    steps {
+        script {
+            def remote = [
+                name: 'k8s-server',
+                host: '98.93.61.82',
+                user: 'ubuntu',
+                credentialsId: 'k8skey',
+                allowAnyHosts: true
+            ]
+
+            sshCommand remote: remote, command: '''
+                cd ~/manifest
+
+                git pull origin main
+
+                kubectl apply -f django-deployment.yaml
+
+            '''
+        }
+    }
+}
         
     }
 }
